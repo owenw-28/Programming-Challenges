@@ -31,3 +31,6 @@ def main():
     rods = float(input("Input rods: "))
     print_info(rods)
 main()
+
+if __name__ == '__main__':
+    run()

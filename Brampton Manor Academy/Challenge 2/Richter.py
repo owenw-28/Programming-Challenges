@@ -14,14 +14,14 @@ def display():
 def energy(richter):
     return 10**((1.5*richter)+4.8)
 
-def TNT(joules):
+def tnt(joules):
     return joules/(4.184*10**9)
 
 def main():
     print("")
     richter = float(input("Please enter a Richter scale value: "))
     joules = energy(richter)
-    tons = TNT(joules)
+    tons = tnt(joules)
     print("Richter value :",richter)
     print("Equivalence in joules: ",joules)
     print("Equivalence in tons of TNT: ",tons)

@@ -19,16 +19,16 @@ def time(rods):
     return time
 
 def print_info(rods):
-    f"You input {rods} rods."
-    f"Conversions:"
-    f"Meters: {metres(rods)}"
-    f"Miles: {miles(rods)}"
-    f"Feet: {feet(rods)}"
-    f"Furlongs: {furlong(rods)}"
-    f"Minutes to walk {rods} rods: {time(rods)}"
+    print(f"You input {rods} rods.")
+    print(f"Conversions:")
+    print(f"Meters: {metres(rods)}")
+    print(f"Miles: {miles(rods)}")
+    print(f"Feet: {feet(rods)}")
+    print(f"Furlongs: {furlong(rods)}")
+    print(f"Minutes to walk {rods} rods: {time(rods)}")
 
 def main():
-    rods = float(input("Input rods: "))
+    rods = float(input(f"Input rods: "))
     print_info(rods)
 main()
 

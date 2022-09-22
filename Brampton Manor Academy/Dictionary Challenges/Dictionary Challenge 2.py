@@ -2,13 +2,10 @@ def main():
     string = input("Input string: ")
     hist = histogram(string)
     print(str(hist))
-"""
-    end = len(hist)-1
-    while end >= 0:
-        value = string[end]
-        print(f"The letter {string[end]} appears {dict.get(hist[end])} times")
-        end = end - 1
-"""
+    
+    for key, value in sorted(hist.items() ):
+print(f'The letter {key} appears {value} time.')
+
 
 def histogram(string):
     hist = {}
@@ -22,4 +19,4 @@ def histogram(string):
 
 main()
 
-#Creating dictionary works, but cannot output
+

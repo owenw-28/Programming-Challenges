@@ -1,5 +1,5 @@
 import csv 
-from pathlib import Path 
+from pathlib import Path
 
 csv_file = Path("Premier 16-17.csv")
 
@@ -37,18 +37,19 @@ def process_results(rows):
             dictionary[home][1] +=1
             dictionary[home][4] +=3
             dictionary[away][2] +=1
-            home_goaldiff[3] = home_goaldiff[3] + (homegoals - awaygoals)
-            away_goaldiff[3] = away_goaldiff[3] + (awaygoals - homegoals)
+            dictionary[home][3] += int(goals_home) - int(goals_away)
+            dictionary[away][3] += int(goals_away) - int(goals_home)
         else:
             dictionary[away][1] +=1
             dictionary[away][4] +=3
             dictionary[home][2] +=1
-            home_goaldiff[3] = home_goaldiff[3] + (homegoals - awaygoals)
-            away_goaldiff[3] = away_goaldiff[3] + (awaygoals - homegoals)
-    print(dictionary)
+            dictionary[home][3] += int(goals_home) - int(goals_away)
+            dictionary[away][3] += int(goals_away) - int(goals_home)
+    return sorted(dictionary.items ,key=lambda dictionary: dictionary[4])
             
 if __name__ == "__main__":
     file_contents = read_csv(csv_file)
     print(process_results(file_contents))
+
 
 

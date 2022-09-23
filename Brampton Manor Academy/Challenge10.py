@@ -51,6 +51,13 @@ if __name__ == "__main__":
     file_contents = read_csv(csv_file)
     table = (process_results(file_contents))
     for key, value in sorted(table.items(), key=lambda e: e[1][4], reverse=True):
+    if __name__ == "__main__":
+    file_contents = read_csv(csv_file)
+    table = (process_results(file_contents))
+    for key, value in sorted(table.items(), key=lambda e: e[1][4], reverse=True):
+    i = 0
+    for i in range (0,19):
+        print(f"{key[i], {value[4]},{value[0]},{value[1]},{value[2]},{value[3]}")
         print(key, value)
 
 

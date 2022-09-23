@@ -34,22 +34,25 @@ def process_results(rows):
             dictionary[away][1] +=1
             dictionary[away][4] +=1
         elif winner == "H":
-            dictionary[home][1] +=1
+            dictionary[home][0] +=1
             dictionary[home][4] +=3
             dictionary[away][2] +=1
             dictionary[home][3] += int(goals_home) - int(goals_away)
             dictionary[away][3] += int(goals_away) - int(goals_home)
         else:
-            dictionary[away][1] +=1
+            dictionary[away][0] +=1
             dictionary[away][4] +=3
             dictionary[home][2] +=1
             dictionary[home][3] += int(goals_home) - int(goals_away)
             dictionary[away][3] += int(goals_away) - int(goals_home)
-    return sorted(dictionary.items ,key=lambda dictionary: dictionary[4])
+    return(dictionary)
             
 if __name__ == "__main__":
     file_contents = read_csv(csv_file)
-    print(process_results(file_contents))
+    table = (process_results(file_contents))
+    for key, value in sorted(table.items(), key=lambda e: e[1][4], reverse=True):
+        print(key, value)
+
 
 
 

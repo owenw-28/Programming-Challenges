@@ -3,7 +3,7 @@ def metres(rods):
     return metres
 
 def feet(rods):
-    feet = metres(rods)/(1/0.3048)
+    feet = metres(rods)*(1/0.3048)
     return feet
 
 def miles(rods):

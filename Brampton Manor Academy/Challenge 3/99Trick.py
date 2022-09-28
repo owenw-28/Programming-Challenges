@@ -15,4 +15,6 @@ def calculation(answer, number):
   return result
   
 main()
-  
+
+if __name__ == '__main__':
+    run()

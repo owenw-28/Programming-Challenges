@@ -10,7 +10,7 @@ class TestSum(unittest.TestCase):
         self.assertEqual(feet(10), 165.0)
         
     def test_miles(self):
-        self.asserEqual(miles(10), 0.03125007767159208)
+        self.assertEqual(miles(10), 0.03125007767159208)
         
     def test_furlongs(self):
         self.assertEqual(furlong(10), 0.25)

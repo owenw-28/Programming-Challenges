@@ -68,10 +68,11 @@ def ref_stats(rows):
         away_red = row[18]
 
         if ref not in ref_dict:
-            ref_dict[ref] = [0,0]
+            ref_dict[ref] = [0,0,0]
 
         ref_dict[ref][0] += int(home_yellow) + int(away_yellow)
         ref_dict [ref][1] += int(home_red) + int(away_red)
+    ref_dict[ref][2] = int(ref_dict[ref][0]) + (int(ref_dict[ref][1]*2))
 
     return(ref_dict)
         
@@ -92,4 +93,17 @@ if __name__ == "__main__":
     for key in referee.items():
         print (key[0],7*" ", key[1][0],"|",key[1][1])
 
-    print(f"Mpst accurate team: {max(table, key=table.get)}") #Chooses biggest value in whole table instead of only shot accuracy column, help.
+    sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5])
+    sorted_fouls = sorted(table.items(), key=lambda e: e[1][6])
+    sorted_referee = sorted(referee.items(), key=lambda e: e[1][2])
+    
+print("")
+print(f"Most accurate team: {sorted_accuracy[19][0]}")
+print(f"Least accurate team: {sorted_accuracy[0][0]}")
+print(f"Dirtest team: {sorted_fouls[19][0]}")
+print(f"Cleanest team: {sorted_fouls[0][0]}")
+print(f"Referee with highest card average: {sorted_referee[19][0]}")
+print(f"Referee with lowest card average: {sorted_referee[0][0]}")
+
+
+

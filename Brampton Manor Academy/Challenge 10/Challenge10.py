@@ -81,7 +81,6 @@ if __name__ == "__main__":
     file_contents = read_csv(csv_file)
     table = (process_results(file_contents))
     referee = (ref_stats(file_contents))
-    i = 4
     print("Team             W   D   L   GD  P   Shot Acc  F/G")
     print("")
     for key, value in sorted(table.items(), key=lambda items: items[1][4], reverse=True):
@@ -104,6 +103,3 @@ print(f"Dirtest team: {sorted_fouls[19][0]}")
 print(f"Cleanest team: {sorted_fouls[0][0]}")
 print(f"Referee with highest card average: {sorted_referee[19][0]}")
 print(f"Referee with lowest card average: {sorted_referee[0][0]}")
-
-
-

@@ -16,9 +16,22 @@ def get_singles(mystr):
         print(f"{count}-->{mystr[start:stop]}")
         position = mystr.find('<div class="title">',stop)
         count +=1
-        
+
+def get_artists(mystr):
+    pos = mystr.find('<div class="artist">')
+    count = 1
+    while pos !=-1 and count <=10:
+        start = mystr.find(">",pos+len('<div class="artist">')+1)
+        stop = mystr.find("<",start)
+        print(f"{count}-->{mystr[start:stop]}")
+        pos = mystr.find('<div class="artist">',stop)
+        count +=1
 
 if __name__ == '__main__':
     fp = urllib.request.urlopen("https://www.officialcharts.com/charts/singles-chart/")
     web_str = read_website(fp)
+    print("SINGLES:")
     get_singles(web_str)
+    print("")
+    print("ARTISTS")
+    get_artists(web_str)

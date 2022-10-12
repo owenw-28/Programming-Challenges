@@ -88,7 +88,7 @@ if __name__ == "__main__":
         
         
     sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5]) #Sorts accuracy column
-    sorted_fouls = sorted(table.items(), key=lambda e: e[1][6]) #Sorts fould column
+    sorted_fouls = sorted(table.items(), key=lambda e: e[1][6]) #Sorts fouls per game column
     sorted_referee = sorted(referee.items(), key=lambda e: e[1][2]) #Sorts card avg column
     
 print("")

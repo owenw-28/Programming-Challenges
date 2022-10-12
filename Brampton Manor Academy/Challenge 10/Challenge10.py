@@ -44,7 +44,7 @@ def process_results(rows):
             dictionary[home][0] +=1
             dictionary[home][4] +=3
             dictionary[away][2] +=1
-            dictionary[home][3] += int(goals_home) - int(goals_away)
+            dictionary[home][3] += int(goals_home) - int(goals_away) #Calculates goal difference
             dictionary[away][3] += int(goals_away) - int(goals_home)
         else:
             dictionary[away][0] +=1
@@ -52,9 +52,9 @@ def process_results(rows):
             dictionary[home][2] +=1
             dictionary[home][3] += int(goals_home) - int(goals_away)
             dictionary[away][3] += int(goals_away) - int(goals_home)
-        dictionary[home][5] += (int(home_shots_target)/int(home_shots))/38
+        dictionary[home][5] += (int(home_shots_target)/int(home_shots))/38 #Calculates shot accuracy
         dictionary[away][5] += (int(away_shots_target)/int(away_shots))/38
-        dictionary[home][6] += (int(home_foul))/38
+        dictionary[home][6] += (int(home_foul))/38 #Calculates fouls per game
         dictionary[away][6] += (int(away_foul))/38
     return(dictionary)
 
@@ -87,9 +87,9 @@ if __name__ == "__main__":
         print(f'{key.ljust(17)}{str(value[0]).ljust(6)}{"|".ljust(5)}{str(value[1]).ljust(5)}|{str(value[2]).rjust(6)}{"|".rjust(5)}{str(value[3]).rjust(6)}{"|".rjust(5)}{str(value[4]).rjust(7)}{"|".rjust(6)}{str(round(value[5],3)).rjust(9)}{"|".rjust(5)}{str(round(value[6],2)).rjust(8)}')
         
         
-    sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5])
-    sorted_fouls = sorted(table.items(), key=lambda e: e[1][6])
-    sorted_referee = sorted(referee.items(), key=lambda e: e[1][2])
+    sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5]) #Sorts accuracy column
+    sorted_fouls = sorted(table.items(), key=lambda e: e[1][6]) #Sorts fould column
+    sorted_referee = sorted(referee.items(), key=lambda e: e[1][2]) #Sorts card avg column
     
 print("")
 print(f"Most accurate team: {sorted_accuracy[19][0]}")

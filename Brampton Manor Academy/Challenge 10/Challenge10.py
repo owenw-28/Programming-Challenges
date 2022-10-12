@@ -3,7 +3,7 @@ from pathlib import Path
 
 csv_file = Path("Premier 16-17.csv")
 
-        
+
 def read_csv(csv_file):
     csv_contents = []
     with open(csv_file) as csvfile:
@@ -13,7 +13,7 @@ def read_csv(csv_file):
             csv_contents.append(row)
     return csv_contents
 
-    
+
 def process_results(rows):
     dictionary = {}
     for row in rows:
@@ -86,9 +86,7 @@ if __name__ == "__main__":
     for key, value in sorted(table.items(), key=lambda items: items[1][4], reverse=True):
         print(f'{key.ljust(17)}{str(value[0]).ljust(6)}{"|".ljust(5)}{str(value[1]).ljust(5)}|{str(value[2]).rjust(6)}{"|".rjust(5)}{str(value[3]).rjust(6)}{"|".rjust(5)}{str(value[4]).rjust(7)}{"|".rjust(6)}{str(round(value[5],3)).rjust(9)}{"|".rjust(5)}{str(round(value[6],2)).rjust(8)}')
         
-
-
-
+        
     sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5])
     sorted_fouls = sorted(table.items(), key=lambda e: e[1][6])
     sorted_referee = sorted(referee.items(), key=lambda e: e[1][2])
@@ -100,4 +98,3 @@ print(f"Dirtest team: {sorted_fouls[19][0]}")
 print(f"Cleanest team: {sorted_fouls[0][0]}")
 print(f"Referee with highest card average: {sorted_referee[19][0]}")
 print(f"Referee with lowest card average: {sorted_referee[0][0]}")
-

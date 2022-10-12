@@ -81,16 +81,13 @@ if __name__ == "__main__":
     file_contents = read_csv(csv_file)
     table = (process_results(file_contents))
     referee = (ref_stats(file_contents))
-    print("Team             W   D   L   GD  P   Shot Acc  F/G")
+    print("Club {:<10} Won {:<6} Drawn {:<4} Lost {:<5} GD {:<6} Points {:<4} Shot Acc {:<4} Fouls/Game".format(" "," "," "," "," "," "," "))
     print("")
     for key, value in sorted(table.items(), key=lambda items: items[1][4], reverse=True):
-        print(key,7*" ", value[0],"|",value[1],"|",value[2],"|",value[3],"|",value[4],"|",round(value[5],3),"|",round(value[6],2))
+        print(f'{key.ljust(17)}{str(value[0]).ljust(6)}{"|".ljust(5)}{str(value[1]).ljust(5)}|{str(value[2]).rjust(6)}{"|".rjust(5)}{str(value[3]).rjust(6)}{"|".rjust(5)}{str(value[4]).rjust(7)}{"|".rjust(6)}{str(round(value[5],3)).rjust(9)}{"|".rjust(5)}{str(round(value[6],2)).rjust(8)}')
         
-    print("")
-    print("Referee         Y    R")
-    print("")
-    for key in referee.items():
-        print (key[0],7*" ", key[1][0],"|",key[1][1])
+
+
 
     sorted_accuracy = sorted(table.items(), key=lambda e: e[1][5])
     sorted_fouls = sorted(table.items(), key=lambda e: e[1][6])
@@ -103,3 +100,4 @@ print(f"Dirtest team: {sorted_fouls[19][0]}")
 print(f"Cleanest team: {sorted_fouls[0][0]}")
 print(f"Referee with highest card average: {sorted_referee[19][0]}")
 print(f"Referee with lowest card average: {sorted_referee[0][0]}")
+

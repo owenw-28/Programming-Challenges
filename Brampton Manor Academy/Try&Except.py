@@ -16,17 +16,15 @@ def main():
     rows, cols = (num+1,num+1)
     i = 0
     matrix = [[0 for i in range(rows)]for j in range(cols)] #Initialise matrix
-    for row in matrix:
-        j = 0
-        matrix[i][j] = i
-        for col in matrix:
-            while j <= cols and symbol == "+":
-                j+=1
-                matrix[i][j] = i+j #Gets index error
-               
-        print(row)
+    for i in range(0,num+1):
+        for j in range(0,num+1):
+            value = ops[symbol](i,j)
+            matrix[i][j] = value
+            print(matrix[i][j],end=" ")
+        print("\n")
         
         
     
 main()
+
 

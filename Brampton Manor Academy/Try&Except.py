@@ -24,7 +24,7 @@ def main():
                 value = 0
                 matrix[i][j] = value
             finally:
-                print(matrix[i][j],end=" ")
+                print(round(matrix[i][j],1),end=" ")
                 
         print("\n")
     

@@ -17,13 +17,18 @@ def main():
     matrix = [[0 for i in range(rows)]for j in range(cols)] #Initialise matrix
     for i in range(0,num+1):
         for j in range(0,num+1):
-            value = ops[symbol](i,j)
-            matrix[i][j] = value
-            print(matrix[i][j],end=" ")
+            try:
+                value = ops[symbol](i,j)
+                matrix[i][j] = value
+            except ZeroDivisionError:
+                value = 0
+                matrix[i][j] = value
+            finally:
+                print(matrix[i][j],end=" ")
+                
         print("\n")
-        
-        
     
 main()
+
 
 

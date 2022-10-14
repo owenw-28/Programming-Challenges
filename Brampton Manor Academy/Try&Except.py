@@ -26,7 +26,7 @@ def main():
     matrix = [[0 for i in range(rows)]for j in range(cols)] #Initialise matrix
     firstln = [x for x in range(num+1)]
     firstln = [str(i) for i in firstln]
-    print(f"{symbol} {' '.rjust(1,' ').join(firstln)}")
+    print(f"{symbol} {' '.rjust(2,' ').join(firstln)}")
     print("----------------")
     for i in range(0,num+1):
         for j in range(0,num+1):
@@ -38,12 +38,14 @@ def main():
                 matrix[i][j] = value
             finally:
                 try:
-                    print(round(matrix[i][j],1),end=" ")
+                    print(f"{i}{(round(matrix[i][j],1),end=' ')}")
                 except:
-                    print(matrix[i][j],end=" ")
+                    print(f'{i}{matrix[i][j],end=" "}')
+                    
         print("\n")
     
 main()
+
 
 
 

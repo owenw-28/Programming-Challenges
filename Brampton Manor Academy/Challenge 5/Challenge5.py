@@ -1,11 +1,12 @@
 def calculate(slayer,layers):
     layers = str(layers)
     slayer = str(slayer)
-    if slayer[0] == layers[5] and slayer[1] == layers[0] and slayer[2] == layers[1] and slayer[3] == layers[2] and slayer[4] == layers[3] and slayer[5] == layers[4]:
-        result = True
-    else:
-        result = False
-    return result
+    for i in range(0, len(slayer)):
+        if slayer[i] == layers[i-1]:
+            result = True
+        else:
+            result = False
+        return result
 
 
 def main():

@@ -1,5 +1,3 @@
-#Does not work
-
 import unittest
 from Challenge5 import *
 

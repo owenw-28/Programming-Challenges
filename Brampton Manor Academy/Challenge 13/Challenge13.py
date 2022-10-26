@@ -33,5 +33,5 @@ if __name__ == '__main__':
     print("SINGLES:")
     get_singles(web_str)
     print("")
-    print("ARTISTS")
+    print("ARTISTS:")
     get_artists(web_str)

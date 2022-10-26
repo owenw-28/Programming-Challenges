@@ -39,6 +39,5 @@ def digToRoman(digSum):
             div -= 1
         i -= 1
 
-
 main()
             

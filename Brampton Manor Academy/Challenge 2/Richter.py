@@ -18,8 +18,7 @@ def tnt(joules):
     return joules/(4.184*10**9)
 
 def main():
-    print("")
-    richter = float(input("Please enter a Richter scale value: "))
+    richter = float(input("\nPlease enter a Richter scale value: "))
     joules = energy(richter)
     tons = tnt(joules)
     print("Richter value :",richter)

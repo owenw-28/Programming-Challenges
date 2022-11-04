@@ -36,7 +36,7 @@ def PrintHeading(Heading):
 
 def DisplayImage(Grid, Header):
   """
-  Parameters: 2D array, String
+  Parameters: 2D array, Object
   Description: Prints heading and then the image
   """
   print()
@@ -48,7 +48,7 @@ def DisplayImage(Grid, Header):
 
 def SaveImage(Grid, Header):
   """
-  Parameters: 2D array, String
+  Parameters: 2D array, Object
   Description: Displays the string with the header and asks the user if they want this as the filename
   """
   print("The current title of your image is: " + Header.Title)
@@ -67,7 +67,7 @@ def SaveImage(Grid, Header):
 
 def EditImage(Grid, Header):
   """
-  Parameters: 2D array, String
+  Parameters: 2D array, Object
   Return Type: 2d array
   Description: Allows the user to edit the image by changing the symbol
   """
@@ -91,8 +91,8 @@ def EditImage(Grid, Header):
 def ConvertChar(PixelValue):
   """
   Parameters: Integer
-  Return Type: String
-  Description: Returns a character based on what integer is passed into the function
+  Return Type: String/Character
+  Description: Returns a character/shade based on what integer is passed into the function
   """
   if PixelValue <= 32:
     AsciiChar = '#'
@@ -113,6 +113,11 @@ def ConvertChar(PixelValue):
   return AsciiChar
 
 def LoadGreyScaleImage(FileIn, Grid, Header):
+  """
+  Parameters: String, 2D array, Object
+  Return Type: 2D array
+  Description: Returns an image by passing in the integer value of a pixel into ConvertChar and then returning the image
+  """
   try:
     for Row in range(Header.Height):
       for Column in range(Header.Width):
@@ -124,6 +129,11 @@ def LoadGreyScaleImage(FileIn, Grid, Header):
   return Grid
   
 def LoadAsciiImage(FileIn, Grid, Header):
+  """
+  Parameters: String, 2D array, Object
+  Return Type: 2D array
+  Description: Takes a character in FileIn and then stores it into a pixel
+  """
   try:
     ImageData = FileIn.readline()
     NextChar = 0
@@ -136,6 +146,11 @@ def LoadAsciiImage(FileIn, Grid, Header):
   return Grid
 
 def LoadFile(Grid, Header):
+  """
+  Parameters: 2D array, Object
+  Return Type: 2D array, Object
+  Description: Opens file in read mode, then splits each line into fields, It passes the FileIn, Grid and Header into either LoadGreyScaleImage or LoadAsciiScaleImage depending on the file type, then it checks if the file exists, if it does then it returns the grid and Header, if not, then it prints an error message. 
+  """
   FileFound = False
   FileTypeOK = False
   FileName = input("Enter filename to load: ")
@@ -168,6 +183,10 @@ def LoadFile(Grid, Header):
   return Grid, Header
 
 def SaveFile(Grid, Header):
+  """
+  Parameters: 2D array, Object
+  Description: Imports a file and writes it, then splits each field with a comma and writes the grid to the file
+  """
   FileName = input("Enter filename: ")
   FileOut = open(FileName + ".txt", 'w')
   FileOut.write(Header.Title + ',' + str(Header.Width) + ',' + str(Header.Height) + ',' + 'A' + '\n')
@@ -177,6 +196,11 @@ def SaveFile(Grid, Header):
   FileOut.close()
 
 def ClearGrid(Grid):
+  """
+  Parameters: 2D array
+  Return Type: 2D array
+  Description: Replaces each pixel with .
+  """
   for Row in range(MAX_HEIGHT):
     for Column in range(MAX_WIDTH):
       Grid[Row][Column] = '.'

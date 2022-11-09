@@ -1,19 +1,5 @@
 from typing import Tuple
 
-"""Gets the chord, given the root and color.
-
-returns
-    ----------
-    chord : tuple
-        the chord consisting of its notes -> (C, Eb, G), (F#, A, C#), ..
-
-arguments
-    ----------
-    root : str
-        the root note of the chord -> C, D, F#, Ab, ..
-    color : str
-        the color or type of chord -> m, M, dim, aug
-"""
 def chord_triad(root: str, color: str) -> Tuple:
     notes = ('C', 'D', 'E', 'F', 'G', 'A', 'B')
     shifts = ('bb', 'b', '', '#', 'x')
@@ -57,6 +43,3 @@ def main():
     print(chord_triad(root, color))
 
 main()
-
-
-

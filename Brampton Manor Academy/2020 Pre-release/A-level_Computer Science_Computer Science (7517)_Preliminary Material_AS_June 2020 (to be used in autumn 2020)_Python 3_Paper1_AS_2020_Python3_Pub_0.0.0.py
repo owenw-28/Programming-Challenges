@@ -207,6 +207,9 @@ def ClearGrid(Grid):
   return Grid
    
 def DisplayMenu():
+  """
+  Description: Prints out the menu
+  """
   print()
   print("Main Menu")
   print("=========")
@@ -218,12 +221,19 @@ def DisplayMenu():
   print()
 
 def GetMenuOption():
+  """
+  Return Type: String
+  Description: Takes in the user's choice for the menu
+  """
   MenuOption = EMPTY_STRING
   while len(MenuOption) != 1:
     MenuOption = input("Enter your choice: ")
   return MenuOption
   
 def Graphics():
+  """
+  Description: Creates an empty grid, calls the DisplayMenu sub program to output the menu for the user, calls different functions depending on the users choice or displays an error message if they have inputted invalid arguments and finally asks the user if they want to save the file, calling the SaveFile function if yes
+  """
   Grid = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
   Grid = ClearGrid(Grid)
   Header = FileHeader()

@@ -24,9 +24,10 @@ public class Calculator {
         return answer;
     }
     private static int power_of(int base_power_of, int exponent){
-        int total = 0;
-        for (int i = 0; i < exponent; i++){
-            total = total + (base_power_of * base_power_of);
+        int result = 1;
+        while (exponent != 0) {
+            result *= base_power_of;
+            --exponent;
         }
         return total;
     }

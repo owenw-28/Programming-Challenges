@@ -112,6 +112,13 @@ def ConvertChar(PixelValue):
     AsciiChar = ' '
   return AsciiChar
 
+def MirrorImage(Grid, Header):
+  PrintHeading(Header.Title)
+  for ThisRow in range(Header.Height):
+    for ThisColumn in range(Header.Width-1, -1 ,-1):
+      print(Grid[ThisRow][ThisColumn], end='')
+    print()
+
 def LoadGreyScaleImage(FileIn, Grid, Header):
   """
   Parameters: String, 2D array, Object
@@ -215,6 +222,7 @@ def DisplayMenu():
   print("=========")
   print("L - Load graphics file") 
   print("D - Display image")
+  print("M - Mirror image")
   print("E - Edit image")
   print("S - Save image")
   print("X - Exit program") 
@@ -245,6 +253,8 @@ def Graphics():
       Grid, Header = LoadFile(Grid, Header)
     elif MenuOption == 'D':
       DisplayImage(Grid, Header) 
+    elif MenuOption == 'M':
+      MirrorImage(Grid, Header)
     elif MenuOption == 'E':
       Grid = EditImage(Grid, Header) 
     elif MenuOption == 'S':    

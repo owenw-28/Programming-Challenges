@@ -119,17 +119,30 @@ def MirrorImage(Grid, Header):
       print(Grid[ThisRow][ThisColumn], end='')
     print()
 
+def FindSecretChar(PixelValue, Key):
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    result = PixelValue - Key
+    if result >0 and result <27:
+        return alphabet[result-1]
+    elif result == 0:
+        return " "
+    elif result >26:
+        return "_"
+
 def LoadGreyScaleImage(FileIn, Grid, Header):
   """
   Parameters: String, 2D array, Object
   Return Type: 2D array
   Description: Returns an image by passing in the integer value of a pixel into ConvertChar and then returning the image
   """
+  Key = Header.Title[-1]
+  SecretMessage = ""
   try:
     for Row in range(Header.Height):
       for Column in range(Header.Width):
         NextPixel = FileIn.readline()
         PixelValue = int(NextPixel)
+        SecretMessage = SecretMessage + FindSecretChar(PixelValue, Key)
         Grid[Row][Column] = ConvertChar(PixelValue)
   except:
     DisplayError("Image data error")    

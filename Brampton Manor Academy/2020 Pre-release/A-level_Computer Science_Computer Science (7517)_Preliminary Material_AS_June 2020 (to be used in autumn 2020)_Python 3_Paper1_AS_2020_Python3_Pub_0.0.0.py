@@ -45,7 +45,33 @@ def DisplayImage(Grid, Header):
     for ThisColumn in range(Header.Width):
       print(Grid[ThisRow][ThisColumn], end='')
     print()
-
+    
+def CompressFile(Grid, Header):
+  FileName = input("Enter the name of the file you want to compress: ")
+  Header = FileHeader()
+  FileFound = False
+  try:
+    FileIn = open(FileName + ".txt", 'r')
+    FileFound = True
+    HeaderLine = FileIn.readline()
+    Contents = FileIn.readline()
+    CompressedFile = open("CMP" + FileName + ".txt", 'w')
+    Header.FileType = "C"
+    count = 1
+    for i in range(len(Contents)-1):
+      prev = Contents[i]
+      current = Contents[i+1]
+      if prev == current:
+        count += 1
+      else:
+        CompressedFile.write(f'{count},{Contents[i]} ')
+        count = 1
+  except:
+    if not FileFound:
+      DisplayError("File not found")
+    else:
+      DisplayError("Unknown error")
+      
 def SaveImage(Grid, Header):
   """
   Parameters: 2D array, Object

@@ -53,10 +53,11 @@ def CompressFile(Grid, Header):
   try:
     FileIn = open(FileName + ".txt", 'r')
     FileFound = True
-    HeaderLine = FileIn.readline()
-    Contents = FileIn.readline()
     CompressedFile = open("CMP" + FileName + ".txt", 'w')
     Header.FileType = "C"
+    HeaderLine = FileIn.readline()
+    Contents = FileIn.readline()
+    CompressedFile.write(HeaderLine)
     count = 1
     for i in range(len(Contents)-1):
       prev = Contents[i]
@@ -64,7 +65,7 @@ def CompressFile(Grid, Header):
       if prev == current:
         count += 1
       else:
-        CompressedFile.write(f'{count},{Contents[i]} ')
+        CompressedFile.write(f'\n{count},{Contents[i]}')
         count = 1
   except:
     if not FileFound:

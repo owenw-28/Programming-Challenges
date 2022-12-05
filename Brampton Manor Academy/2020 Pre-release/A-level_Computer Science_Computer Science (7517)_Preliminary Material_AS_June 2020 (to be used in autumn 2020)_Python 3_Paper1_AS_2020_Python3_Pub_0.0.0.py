@@ -147,6 +147,7 @@ def MirrorImage(Grid, Header):
   if Choice == "horizontal flip":
     HorizontalFlip(Grid, Header, Double)
   if Choice == "double flip":
+    Double = True
     VerticalFlip(Grid, Header, Double)
 
 def VerticalFlip(Grid, Header, Double):
@@ -166,16 +167,15 @@ def HorizontalFlip(Grid, Header, Double):
     newGrid = ClearGrid(newGrid)
     for ThisRow in range(Header.Height):
       for ThisColumn in range(Header.Width-1, -1 ,-1):
-        newGrid[ThisRow][ThisColumn] = Grid[ThisRow][Header.Width-ThisColumn-1]
-    DisplayImage(newGrid, Header)    
+        newGrid[ThisRow][ThisColumn] = Grid[ThisRow][Header.Width-ThisColumn-1]   
   else:
-    newGrid2 = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
-    newGrid2 = ClearGrid(newGrid)
+    newGrid = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
+    newGrid = ClearGrid(newGrid)
     for ThisRow in range(Header.Height):
       for ThisColumn in range(Header.Width-1, -1 ,-1):
-        newGrid2[ThisRow][ThisColumn] = newGrid[ThisRow][Header.Width-ThisColumn-1]
-    DisplayImage(newGrid2, Header)
-
+        newGrid[ThisRow][ThisColumn] = Grid[ThisRow][Header.Width-ThisColumn-1]
+  DisplayImage(newGrid, Header)
+  
 def FindSecretChar(PixelValue, Key):
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     result = PixelValue - Key

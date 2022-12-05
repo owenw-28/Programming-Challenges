@@ -263,6 +263,7 @@ def DisplayMenu():
   print("D - Display image")
   print("M - Mirror image")
   print("E - Edit image")
+  print("C - Compress image")
   print("S - Save image")
   print("X - Exit program") 
   print()
@@ -295,7 +296,9 @@ def Graphics():
     elif MenuOption == 'M':
       MirrorImage(Grid, Header)
     elif MenuOption == 'E':
-      Grid = EditImage(Grid, Header) 
+      Grid = EditImage(Grid, Header)
+    elif MenuOption == 'C':
+      CompressFile(Grid, Header)
     elif MenuOption == 'S':    
       SaveImage(Grid, Header)
     elif MenuOption == 'X':

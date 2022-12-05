@@ -140,11 +140,40 @@ def ConvertChar(PixelValue):
   return AsciiChar
 
 def MirrorImage(Grid, Header):
-  PrintHeading(Header.Title)
+  Choice = input("Do you want to do vertical flip, horizontal flip, or double flip? ")
+  if Choice == "vertical flip":
+    VerticalFlip(Grid, Header)
+  if Choice == "horizontal flip":
+    HorizontalFlip(Grid, Header)
+  if Choice == "double flip":
+    DoubleFlip(Grid, Header)
+
+def VerticalFlip(Grid, Header):
+  newGrid = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
+  newGrid = ClearGrid(newGrid)
+  for ThisRow in range(Header.Height-1, -1, -1):
+    for ThisColumn in range(Header.Width):
+      newGrid[ThisRow][ThisColumn] = Grid[Header.Height-ThisRow-1][ThisColumn]
+  DisplayImage(newGrid, Header)
+
+def HorizontalFlip(Grid, Header):
+  newGrid = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
+  newGrid = ClearGrid(newGrid)
   for ThisRow in range(Header.Height):
     for ThisColumn in range(Header.Width-1, -1 ,-1):
-      print(Grid[ThisRow][ThisColumn], end='')
-    print()
+      newGrid[ThisRow][ThisColumn] = Grid[ThisRow][Header.Width-ThisColumn-1]
+  DisplayImage(newGrid, Header)
+
+def DoubleFlip(Grid, Header):
+  newGrid = [['' for Column in range(MAX_WIDTH)] for Row in range(MAX_HEIGHT)]
+  newGrid = ClearGrid(newGrid)
+  for ThisRow in range(Header.Height-1, -1, -1):
+    for ThisColumn in range(Header.Width):
+      newGrid[ThisRow][ThisColumn] = Grid[Header.Height-ThisRow-1][ThisColumn]
+  for ThisRow in range(Header.Height):
+    for ThisColumn in range(Header.Width-1, -1 ,-1):
+      newGrid[ThisRow][ThisColumn] = Grid[ThisRow][Header.Width-ThisColumn-1]
+  DisplayImage(newGrid, Header)
 
 def FindSecretChar(PixelValue, Key):
     alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"

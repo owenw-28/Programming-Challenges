@@ -87,7 +87,7 @@ def TransferPuzzleIntoGrid(PuzzleName, PuzzleGrid, Puzzle, Answer):
   """
   Parameters: String, 2D Array, 1D Array, 1D Array
   Return Type: 2D Array, 1D Array, Boolean
-  Description: Fills a grid with numbers
+  Description: Fills a grid with numbers using the data in CellInfo
   """
   OK = True
   try:
@@ -128,7 +128,7 @@ def TransferAnswerIntoGrid(PuzzleGrid, Answer):
   """
   Parameters: 2D Array, 1D Array
   Return Type: 2D Array
-  
+  Description: Uses the answer list to get the information for each cell in the grid
   """  
   for Line in range(3, int(Answer[2]) + 3):
     CellInfo = Answer[Line]
@@ -139,6 +139,11 @@ def TransferAnswerIntoGrid(PuzzleGrid, Answer):
   return PuzzleGrid
 
 def LoadPartSolvedPuzzle(PuzzleGrid, Puzzle, Answer, Solution):
+  """
+  Parameters: 2D Array, 1D Array, 1D Array, 1D Array
+  Return Type: 2D Array, 1D Array, 1D Array, 1D Array
+  Description: Loads the partly solved puzzle using the data in the partly solved puzzle txt file
+  """
   PuzzleGrid, Puzzle, Answer, Solution = LoadPuzzle(PuzzleGrid, Puzzle, Answer, Solution)
   try:
     PuzzleName = Answer[0]
@@ -161,6 +166,10 @@ def LoadPartSolvedPuzzle(PuzzleGrid, Puzzle, Answer, Solution):
   return PuzzleGrid, Puzzle, Answer, Solution
 
 def DisplayGrid(PuzzleGrid):
+  """
+  Parameter: 2D Array
+  Description: Prints out the grid
+  """
   print()
   print("   1   2   3   4   5   6   7   8   9  ")
   print(" |===.===.===|===.===.===|===.===.===|")
@@ -179,6 +188,11 @@ def DisplayGrid(PuzzleGrid):
   print()
 
 def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
+  """
+  Parameters: 2D Array, 1D Array, 1D Array
+  Return Type: 2D Array, 1D Array
+  Description: Diplays the grid using DisplayGrid and allows the user to enter numbers into the grid
+  """
   DisplayGrid(PuzzleGrid)
   if PuzzleGrid[0][0] != 'X':
     print("No puzzle loaded")
@@ -186,12 +200,10 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
     print("Enter row column digit: ")
     print("(Press Enter to stop)")
     CellInfo = input()
+    Puzzle, OK = LoadPuzzleFile(PuzzleName, Puzzle)
+    print(puzzle)
     while CellInfo != EMPTY_STRING:
       InputError = False
-      for val in Puzzle:
-        if CellInfo[:2] == val[:2]:
-          if CellInfo != val:
-            InputError = True
       if len(CellInfo) != 3:
         InputError = True
       else:
@@ -219,6 +231,9 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
   return PuzzleGrid, Answer
 
 def DisplayMenu():
+  """
+  Description: Outputs the options menu
+  """
   print()
   print("Main Menu")
   print("=========")
@@ -231,12 +246,19 @@ def DisplayMenu():
   print()
 
 def GetMenuOption():
+  """
+  Description: Takes in the user's choice and returns the first char
+  """
   Choice = EMPTY_STRING
   while len(Choice) != 1:
     Choice = input("Enter your choice: ")
   return Choice[0]
 
 def KeepPuzzle(PuzzleGrid, Answer):
+  """
+  Parameters: 2D Array, 1D Array
+  Description: Saves the changed puzzle
+  """
   if PuzzleGrid[0][0] != 'X':
     print("No puzzle loaded")
   else:
@@ -251,6 +273,11 @@ def KeepPuzzle(PuzzleGrid, Answer):
       print("No answers to keep")
 
 def CheckSolution(PuzzleGrid, Answer, Solution):
+  """
+  Parameters: 2D Array, 1D Array, 1D Array
+  Return Type: Integer, Boolean
+  Description: Checks if the answer the user inputted is correct or not so far
+  """
   ErrorCount = 0
   Solved = False
   Correct = True
@@ -273,10 +300,19 @@ def CheckSolution(PuzzleGrid, Answer, Solution):
   return ErrorCount, Solved
 
 def CalculateScore(Answer, ErrorCount):
+  """
+  Parameters: 1D Array, Integer
+  Return Type: 1D Array
+  Description: Calculates the user's score
+  """
   Answer[1] = str(int(Answer[1]) - ErrorCount)
   return Answer
 
-def DisplayResults(Answer): 
+def DisplayResults(Answer):
+  """
+  Parameter: 1D array
+  Description: Outputs the user's score
+  """
   if int(Answer[2]) > 0:
     print(f"Your score is {Answer[1]}")
     print(f"Your solution for {Answer[0]} was: ")
@@ -286,6 +322,9 @@ def DisplayResults(Answer):
     print("You didn't make a start")
 
 def NumberPuzzle():
+  """
+  Description: Resets the grid, Then calls the DisplayMenu subroutine then calls the relevant subroutine depending on the user's input
+  """
   Finished = False
   PuzzleGrid, Puzzle, Answer, Solution = ResetDataStructures()
   while not Finished:

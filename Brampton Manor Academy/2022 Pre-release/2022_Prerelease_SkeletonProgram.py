@@ -204,6 +204,10 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
     print(puzzle)
     while CellInfo != EMPTY_STRING:
       InputError = False
+      for val in Puzzle:
+        if CellInfo[:2] == val[:2]:
+          if CellInfo != val:
+            InputError = True
       if len(CellInfo) != 3:
         InputError = True
       else:

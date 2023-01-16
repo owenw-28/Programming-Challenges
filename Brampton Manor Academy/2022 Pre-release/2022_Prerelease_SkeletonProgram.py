@@ -26,7 +26,7 @@ def LoadPuzzleFile(PuzzleName, Puzzle):
   """
   Parameters: String, 1D Array
   Return Type: 1D Array, Boolean
-  Description: Fills up the puzzle using the data in the text file
+  Description: Fills up the puzzle using the data in the text file and returns it or outputs appropriate messages if the file is empty or does not exist
   """
   try:
     Line = 0
@@ -53,7 +53,7 @@ def LoadSolution(PuzzleName, Solution):
   """
   Parameters: String, 1D Array
   Return Type: 1D Array, Boolean
-  Description: Fills up the Sudoku Puzzle to make a solution
+  Description: Fills up the Sudoku Grid to make a solution using the data in the {PuzzleName}S.txt file and returns it
   """
   OK = True
   try:
@@ -74,7 +74,7 @@ def ResetAnswer(PuzzleName, Answer):
   """
   Parameters: String, 1D Array
   Return Type: 1D Array
-  Description: Resets the answer
+  Description: Resets the answer by making the 2nd and 3rd index in Answer "0" while making the lines after empty
   """
   Answer[0] = PuzzleName
   Answer[1] = "0"
@@ -87,7 +87,7 @@ def TransferPuzzleIntoGrid(PuzzleName, PuzzleGrid, Puzzle, Answer):
   """
   Parameters: String, 2D Array, 1D Array, 1D Array
   Return Type: 2D Array, 1D Array, Boolean
-  Description: Fills a grid with numbers using the data in CellInfo
+  Description: Fills a grid with numbers using the data in CellInfo and returns it
   """
   OK = True
   try:
@@ -111,7 +111,7 @@ def LoadPuzzle(PuzzleGrid, Puzzle, Answer, Solution):
   """
   Parameters: 2D Array, 1D Array, 1D Array, 1D Array
   Return Type: 2D Array, 1D Array, 1D Array, 1D Array
-  Description: Loads a puzzle and its solution by calling LoadPuzzleFile and LoadSolution respectively
+  Description: Loads a puzzle and its solution by calling LoadPuzzleFile and LoadSolution respectively if OK is true, otherwise uses ResetDataStructures to reset the arrays
   """
   PuzzleGrid, Puzzle, Answer, Solution = ResetDataStructures()
   PuzzleName = input("Enter puzzle name to load: ")
@@ -191,7 +191,7 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
   """
   Parameters: 2D Array, 1D Array, 1D Array
   Return Type: 2D Array, 1D Array
-  Description: Diplays the grid using DisplayGrid and allows the user to enter numbers into the grid
+  Description: Diplays the grid using DisplayGrid and allows the user to enter numbers into the grid checking whether the digits the user inputted are valid or not
   """
   DisplayGrid(PuzzleGrid)
   if PuzzleGrid[0][0] != 'X':
@@ -280,7 +280,7 @@ def CheckSolution(PuzzleGrid, Answer, Solution):
   """
   Parameters: 2D Array, 1D Array, 1D Array
   Return Type: Integer, Boolean
-  Description: Checks if the answer the user inputted is correct or not so far
+  Description: Checks if the answer the user inputted is correct or not so far and outputs the number and coordinates of the errors if there are any 
   """
   ErrorCount = 0
   Solved = False
@@ -307,7 +307,7 @@ def CalculateScore(Answer, ErrorCount):
   """
   Parameters: 1D Array, Integer
   Return Type: 1D Array
-  Description: Calculates the user's score
+  Description: Calculates the user's score and returns it
   """
   Answer[1] = str(int(Answer[1]) - ErrorCount)
   return Answer
@@ -315,7 +315,7 @@ def CalculateScore(Answer, ErrorCount):
 def DisplayResults(Answer):
   """
   Parameter: 1D array
-  Description: Outputs the user's score
+  Description: Outputs the user's score, then ouputs the contents of Answer or outputs the relevant message if the user has not made changes to the sudoku
   """
   if int(Answer[2]) > 0:
     print(f"Your score is {Answer[1]}")
@@ -327,7 +327,7 @@ def DisplayResults(Answer):
 
 def NumberPuzzle():
   """
-  Description: Resets the grid, Then calls the DisplayMenu subroutine then calls the relevant subroutine depending on the user's input
+  Description: Resets the arrays using the ResetDataStructures function, then calls the DisplayMenu subroutine then calls the relevant subroutine depending on the user's input, if the user inputs an invalid choice then it outputs an error message depending on a random number. If the user completes the puzzle then it will check the grid and output whether it is correct or not
   """
   Finished = False
   PuzzleGrid, Puzzle, Answer, Solution = ResetDataStructures()

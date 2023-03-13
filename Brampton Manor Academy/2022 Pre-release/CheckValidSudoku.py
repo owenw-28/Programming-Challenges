@@ -172,9 +172,8 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
           InputError = True
         if (Digit < '1' or Digit > '9'):
           InputError = True
-        if CheckIfEntered(PuzzleGrid, Row, Column, Digit):
-          InputError = True
-          
+        if CheckEntered(PuzzleGrid, Row, Column, Digit):
+          InputError = True         
       if InputError:
         print("Invalid input")
       else:
@@ -187,21 +186,21 @@ def SolvePuzzle(PuzzleGrid, Puzzle, Answer):
       CellInfo = input()
   return PuzzleGrid, Answer
 
-def CheckIfEntered(PuzzleGrid, Row, Column, Digit):    
-  Valid = False  
+def CheckEntered(PuzzleGrid, Row, Column, Digit):
+  Incorrect = False  
   for i in range(1,10):
-      if PuzzleGrid[i][Row] == Digit:
-          Valid = True
+      if PuzzleGrid[i][Column] == Digit:
+          Incorrect = True
   for j in range(1,10):
-      if PuzzleGrid[Column][j] == Digit:
-          Valid = True
-  RowQuotient = (int(Row)+3)//3
-  ColumnQuotient = (int(Column)+3)//3
-  for i in range(RowQuotient, RowQuotient+3):
-      for j in range(ColumnQuotient, ColumnQuotient+3):
+      if PuzzleGrid[Row][j] == Digit:
+          Incorrect = True
+  RowQuotient = int(((int(Row)+2.5)//3)*3)
+  ColumnQuotient = int(((int(Column)+2.5)//3)*3)
+  for i in range(RowQuotient-2, RowQuotient+1):
+      for j in range(ColumnQuotient-2, ColumnQuotient+1):
           if PuzzleGrid[i][j] == Digit:
-                    Valid = True  
-  return Valid
+              Incorrect = True
+  return Incorrect     
 
 def DisplayMenu():
   print()

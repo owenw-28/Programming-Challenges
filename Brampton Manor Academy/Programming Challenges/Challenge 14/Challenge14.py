@@ -25,7 +25,7 @@ def main():
             break
         except (ValueError, NameError):
             print("Please enter in format: operand operand operator")
-            print("")
+            print()
 
         
 

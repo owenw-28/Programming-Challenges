@@ -77,7 +77,7 @@ def LoadFile(SourceCode):
     if not FileExists:
       print("Error: File not found")
     else:
-      print("Error: File has too many lines, shortened to 19 lines")
+      print("Error: Loaded file cannot be read")
       SourceCode[0] = str(LineNumber - 1) 
   if LineNumber > 0:
     DisplaySourceCode(SourceCode)

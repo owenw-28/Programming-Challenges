@@ -305,19 +305,14 @@ def DisplayStack(Memory, Registers):
   print(" ----")
 
 def ExecuteJSR(Memory, Registers, Address, SourceCode):
-  StackOverflow = False
-  Finished = False
-  while StackOverflow == False and Finished == False:
-      StackPointer = Registers[TOS] - 1
-      if StackPointer <= int(SourceCode[0]):
-          StackOverflow = True
-          ReportRunTimeError("Stack Overflow", Registers)
-      else:
-          Memory[StackPointer].OperandValue = Registers[PC] 
-          Registers[PC] = Address 
-          Registers[TOS] = StackPointer
-          DisplayStack(Memory, Registers)
-          Finished = True
+  StackPointer = Registers[TOS] - 1
+  if StackPointer <= int(SourceCode[0]):
+    ReportRunTimeError("Stack Overflow", Registers)
+  else:
+    Memory[StackPointer].OperandValue = Registers[PC] 
+    Registers[PC] = Address 
+    Registers[TOS] = StackPointer
+    DisplayStack(Memory, Registers)
   return Memory, Registers
 
 def ExecuteRTN(Memory, Registers): 

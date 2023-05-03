@@ -1,0 +1,17 @@
+ NUM1:      54
+ NUM2:      -100
+START: LDA  NUM2   
+       NOT  NUM2
+       STA  15
+       HLT 
+
+
+
+
+
+
+
+
+
+
+

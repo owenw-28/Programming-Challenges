@@ -1,0 +1,9 @@
+ NUM1:      -2
+ NUM2:      -3
+START: LDA  NUM1 
+       SHL  2
+       STA  1
+       LDA  NUM2
+       SHR  1
+       STA  2
+       HLT		

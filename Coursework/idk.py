@@ -8,8 +8,8 @@ import plotly.graph_objects as go
 key = '3R2UP7YSRGOUCAM0'
 
 def get_data(Company):
-    start_date = date(2023, 5, 1)
-    end_date = date.today()
+    start_date = datetime.datetime.today() - datetime.timedelta(days=60)
+    end_date = datetime.datetime.today()
     index = 0
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol={Company}&apikey={key}'
     r = requests.get(url)
@@ -27,7 +27,11 @@ def get_data(Company):
             single_date = single_date + datetime.timedelta(days=1)
     df = pd.DataFrame(df_rows, columns=['Date', 'Open', 'High', 'Low', 'Close'])
     print(df)
+
     fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])])
+
+    fig.update_layout(title=f'Stock Price',yaxis_title=f'{Company} Stock', shapes = [dict(x0=start_date-datetime.timedelta(days=2), x1=end_date-datetime.timedelta(days=1), y0=0, y1=1, xref='x', yref='paper',line_width=2)])
+
     fig.show()
 
 def daterange(start_date, end_date):
